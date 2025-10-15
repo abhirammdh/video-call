@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Video Conference</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="room-info">
+        <i class="fas fa-video" style="margin-right: 0.5rem; color: #4caf50;"></i>
+        <span id="roomHeader">Room: <strong id="roomName">room1</strong></span>
+      </div>
+      <div id="status" class="status">Enter details to join</div>
+    </header>
+
+    <main class="main">
+      <div class="videos">
+        <div class="video-wrapper remote">
+          <video id="remoteVideo" autoplay playsinline aria-label="Remote user's video"></video>
+          <div id="remoteName" class="name-label">Waiting for remote...</div>
+          <div id="localPip" class="local-pip" style="display: none;">
+            <video id="localVideo" autoplay muted playsinline aria-label="Your video (pip)"></video>
+            <div id="localName" class="name-label-pip">You</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="controls-wrapper">
+      <div class="pre-join">
+        <input type="text" id="username" placeholder="Your name (e.g., User 1)" value="User 1" aria-label="Your name">
+        <input type="text" id="roomId" placeholder="Room ID" value="room1" aria-label="Room ID">
+        <button id="joinBtn" class="btn primary" title="Join Room">
+          <i class="fas fa-sign-in-alt"></i> Join
+        </button>
+      </div>
+
+      <div id="callControls" class="call-controls" style="display: none;">
+        <button id="muteAudio" class="btn secondary" aria-label="Mute audio" title="Mute Audio">
+          <i class="fas fa-microphone"></i>
+          <span>Mute</span>
+        </button>
+        <button id="muteVideo" class="btn secondary" aria-label="Turn off video" title="Toggle Video">
+          <i class="fas fa-video"></i>
+          <span>Video</span>
+        </button>
+        <button id="startCallBtn" class="btn primary" disabled title="Start Call">
+          <i class="fas fa-phone"></i>
+          <span>Call</span>
+        </button>
+        <button id="endCallBtn" class="btn danger" disabled style="display: none;" title="End Call">
+          <i class="fas fa-phone-slash"></i>
+          <span>End</span>
+        </button>
+        <button id="fullscreenBtn" class="btn secondary" disabled aria-label="Toggle fullscreen" title="Fullscreen">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
