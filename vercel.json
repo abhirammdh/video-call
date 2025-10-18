@@ -4,12 +4,26 @@
     {
       "src": "video-conference-app/server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "video-conference-app/public/**/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
+    
+    {
+      "handle": "filesystem"
+    },
+  
+    {
+      "src": "/api/(.*)",
+      "dest": "video-conference-app/server.js"
+    },
+   
     {
       "src": "/(.*)",
-      "dest": "video-conference-app/server.js"
+      "dest": "/index.html"
     }
   ]
 }
