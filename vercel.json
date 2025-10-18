@@ -1,1 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "video-conference-app/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "video-conference-app/public/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "video-conference-app/server.js"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/",
+      "dest": "video-conference-app/public/index.html"
+    }
+  ]
+}
 
