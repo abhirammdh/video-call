@@ -17,7 +17,6 @@ io.on('connection', (socket) => {
     socket.join(roomId);
     console.log(`${username} (${socket.id}) joining room ${roomId}`);
     
-    // Broadcast new user to room
     socket.to(roomId).emit('user-joined', { id: socket.id, username });
     io.to(roomId).emit('status-update', { type: 'user-joined', message: `${username} joined` });
   });
@@ -40,8 +39,8 @@ io.on('connection', (socket) => {
 
   socket.on('ice-candidate', (data) => {
     const { roomId, candidate } = data;
-    console.log(`ICE from ${socket.data.username} to room ${roomId} (candidate: ${candidate.candidate?.substring(0, 20)}...)`); // Truncated log
-    socket.to(roomId).emit('ice-candidate', candidate); // Emit full candidate
+    console.log(`ICE from ${socket.data.username} to room ${roomId} (candidate: ${candidate.candidate?.substring(0, 20)}...)`);
+    socket.to(roomId).emit('ice-candidate', candidate);
   });
 
   socket.on('status-update', (data) => {
@@ -56,6 +55,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
-});
+// Remove server.listen() on Vercel
+// Instead, export the server instance
+module.exports = server;
